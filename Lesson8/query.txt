@@ -5,8 +5,8 @@
 5) db.restaurants.find({district:"Bronx"}).pretty()
 6) db.restaurants.find({district:"Bronx"}).limit(5).pretty()
 7) db.restaurants.find({district:"Bronx"}).skip(5).limit(5).pretty()
-8) db.restaurants.find({"address.coord.1":{$lt:-95.754168}}).pretty() //coord[long, lat]
-9) db.restaurants.find({$and: [{"cuisine":{$ne:"American"}},{"grades.score": {$gt:70}},{"address.coord.1":{$lt:-65.754168}}]}).pretty()
+8) db.restaurants.find({"address.coord.0":{$lt:-95.754168}}).pretty() //coord[lat, long]
+9) db.restaurants.find({$and: [{"cuisine":{$ne:"American"}},{"grades.score": {$gt:70}},{"address.coord.0":{$lt:-65.754168}}]}).pretty()
 10)db.restaurants.find({name:{$regex:"^Wil"}},{restaurant_id:1,name:1, district:1,cuisine:1}).pretty()
 11)db.restaurants.find({name:{$regex:"ces$",$options: "i"}},{restaurant_id:1,name:1, district:1,cuisine:1}).pretty()
 12)db.restaurants.find({name:{$regex:".*Reg.*",$options: "i"}},{restaurant_id:1,name:1, district:1,cuisine:1}).pretty()
