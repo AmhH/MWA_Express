@@ -12,9 +12,10 @@ router.post('/',(req, res, next)=>{
         const category = req.body.catagory;
         const long = req.body.longitude;
         const lat = req.body.latitude;
-        db.collection('locCollection').insert([{name: name, category: category, location:{type:"Point", coordinates:[long, lat]}}], (err, doc)=>{
+        console.log("type------------->"+long.type());
+        db.collection('locCollection').insert([{location:{type:"Point", coordinates:[long, lat]},name: name, category: category}], (err, doc)=>{
             if(err) {
-              console.error(erer);
+              console.error(err);
               res.render('error', { message:err });
             }
             console.dir(doc);

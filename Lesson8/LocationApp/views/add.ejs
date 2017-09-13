@@ -4,6 +4,15 @@
 <head>
     <title></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/demo.css"/>
+
+	<!-- Dependencies: JQuery and GMaps API should be loaded first -->
+	<script src="../public/javascripts/jquery-2.1.1.min.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+	<!-- CSS and JS for our code -->
+	<link rel="stylesheet" type="text/css" href="../public/stylesheets/jquery-gmaps-latlon-picker.css"/>
+	<script src="../public/javascripts/jquery-gmaps-latlon-picker.js"></script>
 </head>
 
 <body>
@@ -15,6 +24,35 @@
         <p><input type="number" step="any" name="latitude" placeholder="Latitude"></p>
         <input type="submit" value="Add" />
     </form>
+    <fieldset class="gllpLatlonPicker">
+		<input type="text" class="gllpSearchField">
+		<input type="button" class="gllpSearchButton" value="search">
+		<br/><br/>
+		<div class="gllpMap">Google Maps</div>
+		<br/>
+		lat/lon:
+			<input type="text" class="gllpLatitude" value="20"/>
+			/
+			<input type="text" class="gllpLongitude" value="20"/>
+		zoom: <input type="text" class="gllpZoom" value="3"/>
+		<input type="button" class="gllpUpdateButton" value="update map">
+		<br/>
+	</fieldset>
 </body>
+<script>
+  $(document).ready(function() {
+    // Copy the init code from "jquery-gmaps-latlon-picker.js" and extend it here
+    $(".gllpLatlonPicker").each(function() {
+      $obj = $(document).gMapsLatLonPicker();
 
+      $obj.params.strings.markerText = "Drag this Marker (example edit)";
+
+      $obj.params.displayError = function(message) {
+        console.log("MAPS ERROR: " + message); // instead of alert()
+      };
+
+      $obj.init( $(this) );
+    });
+  });
+</script>
 </html>
