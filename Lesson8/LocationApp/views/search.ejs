@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+      window.onload = function(){
+        navigator.geolocation.getCurrentPosition(success, fail);
+        function success(position){
+          var longitude = position.coords.longitude;
+          var latitude = position.coords.latitude;
+        }
+        function fail(msg){
+          console.log(msg.message);
+        }
+      };
+
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <h1>Location Search </h1>
+    <form method="post" action="search">
+        <p><input type="text" name="catagory" placeholder="Location catagory" required></p>
+        </br>
+        <input type="submit" value="Search" />
+    </form>
+  </body>
+</html>

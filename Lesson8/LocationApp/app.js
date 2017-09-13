@@ -10,6 +10,8 @@ var users = require('./routes/users');
 var add = require('./routes/add');
 var update = require('./routes/update');
 var deleteLoc = require('./routes/delete');
+var search = require('./routes/search');
+var searchResult = require('./routes/searchResult');
 
 var app = express();
 
@@ -30,6 +32,7 @@ app.use('/users', users);
 app.use('/add', add);
 app.use('/update', update);
 app.use('/delete', deleteLoc);
+app.use('/search',search);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

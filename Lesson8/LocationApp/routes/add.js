@@ -10,9 +10,8 @@ router.get('/', function(req, res, next) {
 router.post('/',(req, res, next)=>{
         const name = req.body.name;
         const category = req.body.catagory;
-        const long = req.body.longitude;
-        const lat = req.body.latitude;
-        console.log("type------------->"+long.type());
+        const long = parseFloat(req.body.longitude);
+        const lat = parseFloat(req.body.latitude);
         db.collection('locCollection').insert([{location:{type:"Point", coordinates:[long, lat]},name: name, category: category}], (err, doc)=>{
             if(err) {
               console.error(err);
