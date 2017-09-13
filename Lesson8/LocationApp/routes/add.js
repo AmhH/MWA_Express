@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var mongo = require('mongoskin');
-var db = mongo.db('mongodb://localhost:27017/LocationDB', { native_parser: true });
 
 router.get('/', function(req, res, next) {
   res.render('add', { title: 'Express' });
@@ -12,14 +10,15 @@ router.post('/',(req, res, next)=>{
         const category = req.body.catagory;
         const long = parseFloat(req.body.longitude);
         const lat = parseFloat(req.body.latitude);
-        db.collection('locCollection').insert([{location:{type:"Point", coordinates:[long, lat]},name: name, category: category}], (err, doc)=>{
+        console.log(req.dbs);
+        req.dbs.collection('locCollection').insert([{location:{type:"Point", coordinates:[long, lat]},name: name, category: category}], (err, doc)=>{
             if(err) {
               console.error(err);
               res.render('error', { message:err });
             }
             console.dir(doc);
-            res.render('success', { message:"Data successfully added!!"});
-            db.close();
+            res.render('add', { message:"Data successfully added!!"});
+           // db.close();
         });
 });
 

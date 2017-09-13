@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongo = require('mongoskin');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -11,7 +12,7 @@ var add = require('./routes/add');
 var update = require('./routes/update');
 var deleteLoc = require('./routes/delete');
 var search = require('./routes/search');
-var searchResult = require('./routes/searchResult');
+// var searchResult = require('./routes/searchResult');
 
 var app = express();
 
@@ -21,6 +22,12 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use((req, res, next)=>{
+  var db = mongo.db('mongodb://localhost:27017/LocationDB', { native_parser: true });
+  req.dbs = db;
+  next();
+  db.close();
+});
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

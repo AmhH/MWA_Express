@@ -13,7 +13,7 @@ router.post('/',(res, req, next)=>{
         const category = req.body.catagory;
         const long = req.body.longitude;
         const lat = req.body.latitude;
-        db.collection('locCollection').update({name: oldname, category: oldcategory},{$set:{name:name, category:category}}, (err, doc)=>{
+        req.dbs.collection('locCollection').update({name: oldname, category: oldcategory},{$set:{name:name, category:category}}, (err, doc)=>{
             if(err) {
               console.error(erer);
               res.render('error', { message:err });

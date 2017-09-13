@@ -7,14 +7,17 @@
       window.onload = function(){
         navigator.geolocation.getCurrentPosition(success, fail);
         function success(position){
-          var longitude = position.coords.longitude;
-          var latitude = position.coords.latitude;
+           var longitude = position.coords.longitude;
+           var latitude = position.coords.latitude;
+           document.getElementById('lg').value = longitude;
+           document.getElementById('lt').value = latitude;
+          console.log("long"+document.getElementById('lg').value);
+          console.log("lat"+document.getElementById('lt').value)
         }
         function fail(msg){
           console.log(msg.message);
         }
-      };
-
+      }
     </script>
   </head>
   <body>
@@ -22,8 +25,11 @@
     <h1>Location Search </h1>
     <form method="post" action="search">
         <p><input type="text" name="catagory" placeholder="Location catagory" required></p>
+        <p><input id="lg" type="number" step="any" name="longitude"  hidden></p>
+        <p><input id="lt" type="number" step="any" name="latitude"  hidden></p>
         </br>
         <input type="submit" value="Search" />
     </form>
   </body>
+  
 </html>
